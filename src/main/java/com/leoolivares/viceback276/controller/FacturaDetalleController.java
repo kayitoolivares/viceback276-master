@@ -23,6 +23,10 @@ public class FacturaDetalleController {
     ResponseEntity<?> getByID(@PathVariable("id") Long id){
         return ResponseEntity.ok(service.getById(id));
     }
+    @GetMapping(value = "/byIDfactura/{id}")
+    ResponseEntity<?> getByIDfactura(@PathVariable("id") Long id){
+        return ResponseEntity.ok(service.getAllByIdFactura(id));
+    }
 
     @PostMapping(value = "/")
     ResponseEntity<?> getByID(@RequestBody Facturadetalle facturadetalle){

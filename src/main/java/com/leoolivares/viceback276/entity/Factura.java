@@ -31,8 +31,8 @@ public class Factura {
     @Column(name="estatus")
     private String estatus;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss.SSSZ")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss.SSSZ")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "fecha")
     private Date fecha;

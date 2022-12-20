@@ -2,8 +2,10 @@ package com.leoolivares.viceback276.service.Implementation;
 
 import com.leoolivares.viceback276.entity.Factura;
 import com.leoolivares.viceback276.entity.Facturadetalle;
+import com.leoolivares.viceback276.entity.Producto;
 import com.leoolivares.viceback276.repository.IFacturaRepository;
 import com.leoolivares.viceback276.repository.IFacturadetalleRepository;
+import com.leoolivares.viceback276.repository.IProductoRepository;
 import com.leoolivares.viceback276.service.IFacturaService;
 import com.leoolivares.viceback276.service.IFacturadetalleService;
 import lombok.RequiredArgsConstructor;
@@ -25,6 +27,9 @@ public class FacturadetalleImplementation implements IFacturadetalleService {
     @Autowired
     IFacturaRepository iFacturaRepository;
 
+    @Autowired
+    IProductoRepository iProductoRepository;
+
     @Override
     public List<Facturadetalle> getAll() {
         return repository.findAll();
@@ -42,7 +47,14 @@ public class FacturadetalleImplementation implements IFacturadetalleService {
 
     @Override
     public Facturadetalle save(Facturadetalle facturadetalle) {
-        return repository.save(facturadetalle);
+        Producto producto=iProductoRepository.findById(facturadetalle.getIdproducto()).get();
+        facturadetalle.setPrecio(producto.getPrecio());
+        try {
+            facturadetalle=repository.save(facturadetalle);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        return facturadetalle;
     }
 
     @Override

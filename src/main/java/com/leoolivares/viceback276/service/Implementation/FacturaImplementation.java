@@ -39,7 +39,14 @@ public class FacturaImplementation implements IFacturaService {
     @Override
     public Factura save(Factura factura) {
         factura.setFecha(new Date());
-        return repository.save(factura);
+        try {
+            factura=repository.save(factura);
+
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        factura=repository.findById(factura.getId()).get();
+        return factura;
     }
 
     @Override
