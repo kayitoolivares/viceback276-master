@@ -47,6 +47,7 @@ public class FacturaImplementation implements IFacturaService {
             if (factura.get().getEstatus().equals("0")){
                 repository.deleteById(aLong);
                 return  true;
+
             }
         }
         return false;
