@@ -1,0 +1,32 @@
+version: '3.8'
+services:
+  frontAdmin:
+    image: leoolivares1/vicefront:2
+    restart: always
+    container_name: front
+    ports:
+      - '80:8080'
+    networks:
+      - 'dockernetflix-network'
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+
+  frontUser:
+    image: leoolivares1/viceback
+    restart: always
+    container_name: back
+    ports:
+      - '8081:8081'
+    networks:
+      - 'dockernetflix-network'
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+
+
+
+networks:
+  dockernetflix-network:
