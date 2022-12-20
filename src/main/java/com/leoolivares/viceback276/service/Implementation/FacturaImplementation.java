@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 @Service
@@ -37,6 +38,7 @@ public class FacturaImplementation implements IFacturaService {
 
     @Override
     public Factura save(Factura factura) {
+        factura.setFecha(new Date());
         return repository.save(factura);
     }
 
